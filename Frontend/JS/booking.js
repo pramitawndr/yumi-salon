@@ -6,9 +6,7 @@ let customerNameInput;
 let selectedTimeHiddenInput;
 let timeSlotError;
 
-/**
- * Mendapatkan data reservasi dari localStorage.
- */
+/** Mendapatkan data reservasi dari localStorage. */
 function getReservations() {
     try {
         const data = localStorage.getItem('yumi_reservations');
@@ -19,20 +17,14 @@ function getReservations() {
     }
 }
 
-/**
- * Menyimpan data reservasi ke localStorage.
- */
+/** Menyimpan data reservasi ke localStorage. */
 function saveReservations(reservations) {
     localStorage.setItem('yumi_reservations', JSON.stringify(reservations));
 }
 
-
 // --- FUNGSI UTAMA UNTUK BOOKING SLOTS ---
 
-/**
- * Menghitung slot waktu yang tersedia berdasarkan aturan kategori.
- * Bergantung pada: servicesData, CATEGORY_RULES (dari data.js)
- */
+/** Menghitung slot waktu yang tersedia berdasarkan aturan kategori. */
 function getAvailableTimeSlots(dateString, serviceId) {
     const reservations = getReservations();
     const service = servicesData.find(s => s.id === serviceId);
@@ -40,7 +32,6 @@ function getAvailableTimeSlots(dateString, serviceId) {
     const rule = CATEGORY_RULES[categoryKey];
     const { durationHours, capacity } = rule;
     
-    // Jam operasional: 09:00 sampai 21:00
     const OPEN_HOUR = 9;
     const CLOSE_HOUR = 21; 
 
@@ -55,7 +46,7 @@ function getAvailableTimeSlots(dateString, serviceId) {
             res.serviceId === serviceId &&
             res.date === dateString &&
             res.time === time &&
-            res.status === 'Booked' // Hanya hitung yang berstatus 'Booked'
+            res.status === 'Booked' 
         ).length;
 
         timeSlots.push({ time, isAvailable: count < capacity });
@@ -63,9 +54,7 @@ function getAvailableTimeSlots(dateString, serviceId) {
     return timeSlots;
 }
 
-/**
- * Fungsi render slot waktu di modal
- */
+/** Fungsi render slot waktu di modal */
 function renderTimeSlots(dateString, serviceId) {
     const timeSlotsContainer = document.getElementById('availableTimeSlots');
     const confirmBookingBtn = document.getElementById('confirmBookingBtn');
@@ -110,7 +99,6 @@ function renderTimeSlots(dateString, serviceId) {
 // --- LOGIKA BOOKING MODAL di DOMContentLoaded ---
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Ambil semua elemen modal booking
     bookingModalService = document.getElementById('bookingModalService');
     bookingFormService = document.getElementById('bookingFormService');
     bookingDateInput = document.getElementById('bookingDateService');
@@ -132,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } 
     }); 
 
-    // 3. Proses SUBMIT Booking
+    // Proses SUBMIT Booking
     bookingFormService?.addEventListener('submit', (e) => { 
         e.preventDefault(); 
         

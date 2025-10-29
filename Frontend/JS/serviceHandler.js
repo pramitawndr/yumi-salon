@@ -1,12 +1,8 @@
-// Variabel Konten (Harus ada di global scope karena digunakan oleh app.js dan booking.js)
 let currentServiceForBooking = null;
 
 // --- FUNGSI RENDERING LAYANAN ---
 
-/**
- * Mengisi konten detail layanan (termasuk carousel).
- * Bergantung pada: servicesData (dari data.js)
- */
+/* Mengisi konten detail layanan (termasuk carousel). */
 function displayServiceDetail(service) {
     const serviceDetailPage = document.getElementById('serviceDetailPage');
     const bannerElement = document.getElementById('serviceDetailBanner');
@@ -101,10 +97,7 @@ function displayServiceDetail(service) {
     }
 }
 
-/**
- * Merender accordion booking di halaman Kontak & Booking.
- * Bergantung pada: servicesData (dari data.js)
- */
+/** Merender accordion booking di halaman Kontak & Booking. */
 function renderBookingAccordion() {
     const accordionEl = document.getElementById('bookingAccordion');
     if (!accordionEl) return;
@@ -149,27 +142,23 @@ function renderBookingAccordion() {
     });
     
     // Visibilitas tombol booking diatur setelah semua dirender
-    // Asumsi: isAdminLoggedIn sudah diinisialisasi oleh auth.js
     updateBookingButtonsVisibility(isAdminLoggedIn); 
 }
 
-/**
- * Mengontrol visibilitas tombol booking jika admin login.
- * Bergantung pada: isAdminLoggedIn (dari auth.js)
- */
 function updateBookingButtonsVisibility(isAdmin) {
+    
     const detailBookingBtn = document.querySelector('#serviceDetailPage .book-now-service');
     if (detailBookingBtn) {
-        detailBookingBtn.classList.toggle('d-none', isAdmin);
+        detailBookingBtn.classList.remove('d-none'); 
     }
     
     const heroBookingBtn = document.querySelector('.hero-content .book-now-service');
     if (heroBookingBtn) {
-        heroBookingBtn.classList.toggle('d-none', isAdmin);
+        heroBookingBtn.classList.remove('d-none');
     }
 
     const contactBookingLinks = document.querySelectorAll('#bookingAccordion .book-now-service');
     contactBookingLinks.forEach(btn => {
-        btn.classList.toggle('d-none', isAdmin);
+        btn.classList.remove('d-none');
     });
 }

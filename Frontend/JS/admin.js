@@ -1,8 +1,4 @@
-// FUNGSI UTAMA UNTUK ADMIN DASHBOARD (Bergantung pada getReservations/saveReservations dari booking.js)
-
-/** * Mendapatkan data reservasi dari localStorage.
- * (Duplikasi dari booking.js atau seharusnya berada di file shared, tapi mari kita pisahkan dulu)
-*/
+/** * Mendapatkan data reservasi dari localStorage. */
 function getReservations() {
     try {
         const data = localStorage.getItem('yumi_reservations');
@@ -13,9 +9,7 @@ function getReservations() {
     }
 }
 
-/**
- * Menyimpan data reservasi ke localStorage.
- * (Duplikasi dari booking.js atau seharusnya berada di file shared, tapi mari kita pisahkan dulu)*/
+/** Menyimpan data reservasi ke localStorage.*/
 function saveReservations(reservations) {
     localStorage.setItem('yumi_reservations', JSON.stringify(reservations));
 }
@@ -28,7 +22,7 @@ function renderReservations(reservations, filterDate = null) {
 
     tableBody.innerHTML = '';
 
-    // 1. Filter data jika ada tanggal yang dipilih
+    // Filter data jika ada tanggal yang dipilih
     let filteredReservations = reservations;
     if (filterDate) {
         filteredReservations = reservations.filter(res => res.date === filterDate);
@@ -43,7 +37,7 @@ function renderReservations(reservations, filterDate = null) {
         return;
     }
 
-    // 2. Sorting berdasarkan tanggal dan waktu
+    // Sorting berdasarkan tanggal dan waktu
     filteredReservations.sort((a, b) => {
         if (a.date !== b.date) {
             return new Date(a.date) - new Date(b.date);
@@ -51,7 +45,7 @@ function renderReservations(reservations, filterDate = null) {
         return a.time.localeCompare(b.time); 
     });
 
-    // 3. Render baris tabel
+    // Render baris tabel
     filteredReservations.forEach(res => {
         const row = tableBody.insertRow();
 
@@ -83,14 +77,6 @@ function renderReservations(reservations, filterDate = null) {
                 cancelReservation(resId);
             }
         });
-        
-        // TAMBAHKAN: Event listener untuk tombol Hapus Permanen
-        row.querySelector('.delete-res')?.addEventListener('click', (e) => {
-            const resId = parseInt(e.currentTarget.dataset.id);
-            if (confirm(`PERINGATAN! Anda akan menghapus permanen reservasi oleh ${res.customer} untuk ${res.serviceName} pada ${res.date} jam ${res.time}. Lanjutkan?`)) {
-                deleteReservation(resId);
-            }
-        });
     });
 
     // Event Listener untuk Filter Tanggal di Admin
@@ -118,8 +104,7 @@ function cancelReservation(id) {
     }
 }
 
-/** * TAMBAHKAN: Menghapus permanen reservasi berdasarkan ID dan menyimpan kembali data.
-*/
+/** Menghapus permanen reservasi berdasarkan ID dan menyimpan kembali data. */
 function deleteReservation(id) {
     let reservations = getReservations();
     // Filter semua reservasi kecuali yang memiliki ID yang cocok

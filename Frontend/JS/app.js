@@ -10,9 +10,7 @@ function hideAllPages() {
     });
 } 
 
-/**
- * Menampilkan halaman berdasarkan ID dan memperbarui URL/Title.
- */
+/** Menampilkan halaman berdasarkan ID dan memperbarui URL/Title */
 function showPage(pageElement, pageTitleSuffix = "Home", activeNavLinkId = 'homeNavLink') {
     hideAllPages();
     if (pageElement) {
@@ -24,7 +22,6 @@ function showPage(pageElement, pageTitleSuffix = "Home", activeNavLinkId = 'home
         document.querySelectorAll('.navbar-nav .nav-link, .dropdown-toggle').forEach(link => link.classList.remove('active'));
         const activeLink = document.getElementById(activeNavLinkId);
         if (activeLink) { 
-            // Cek jika link berada di dalam dropdown
             const parentDropdownToggle = activeLink.closest('.dropdown')?.querySelector('.dropdown-toggle');
             if (parentDropdownToggle && !activeLink.classList.contains('nav-link')) { parentDropdownToggle.classList.add('active'); }
             else if (activeLink.classList.contains('nav-link')) { activeLink.classList.add('active'); }
@@ -37,7 +34,7 @@ function showPage(pageElement, pageTitleSuffix = "Home", activeNavLinkId = 'home
 
 function showMainContent() { 
     showPage(document.getElementById('mainContent'), "Home", 'homeNavLink'); 
-    // Asumsi: isAdminLoggedIn sudah diinisialisasi oleh auth.js
+
     updateBookingButtonsVisibility(isAdminLoggedIn); 
 } 
 
@@ -64,19 +61,17 @@ function showKontakPage() {
 }
 
 function showAdminDashboard() {
-    // Asumsi: isAdminLoggedIn sudah diinisialisasi oleh auth.js
     if (!isAdminLoggedIn) {
         alert("Akses ditolak. Anda bukan Admin.");
         showMainContent();
         return;
     }
     showPage(document.getElementById('adminDashboardPage'), "Admin Dashboard", 'none');
-    // renderReservations adalah fungsi dari admin.js
+
     renderReservations(getReservations()); 
 }
 
 // --- EVENT LISTENER & INISIALISASI ---
-
 document.addEventListener('DOMContentLoaded', function() {
 
     // 1. EVENT LISTENER: MODAL BOOKING (Membuka Modal)
@@ -84,12 +79,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const clickedElement = e.target.closest('.book-now-service');
         if (clickedElement) { 
             e.preventDefault(); 
-            
-            // Asumsi: isAdminLoggedIn sudah diinisialisasi oleh auth.js
-            if (isAdminLoggedIn) { 
-                alert("Anda login sebagai Admin. Admin tidak dapat membuat reservasi di sistem ini.");
-                return;
-            }
             
             let targetServiceId = clickedElement.dataset.serviceid;
             // serviceHandler.js memastikan currentServiceForBooking di-set

@@ -1,9 +1,7 @@
 let isAdminLoggedIn = false;
 let currentCustomerName = null;
 
-/**
- * Mengambil status login dari localStorage saat halaman dimuat.
- */
+/** Mengambil status login dari localStorage saat halaman dimuat. */
 function initAuthStatus() {
     const status = localStorage.getItem('auth_status');
 
@@ -20,16 +18,12 @@ function initAuthStatus() {
     }
 }
 
-/**
- * Menyimpan status login ke localStorage.
- */
+/** Menyimpan status login ke localStorage.*/
 function saveAuthStatus(isLoggedIn, isAdmin, name = null) {
     localStorage.setItem('auth_status', JSON.stringify({ isLoggedIn, isAdmin, name }));
 }
 
-/**
- * Merender tampilan Navbar setelah Admin login.
- */
+/** Merender tampilan Navbar setelah Admin login. */
 function performAdminLoginRender() {
     isAdminLoggedIn = true;
     const loginBtn = document.getElementById("loginBtn");
@@ -59,9 +53,7 @@ function performAdminLoginRender() {
     updateBookingButtonsVisibility(true);
 }
 
-/**
- * Merender tampilan Navbar setelah Pelanggan login.
- */
+/** Merender tampilan Navbar setelah Pelanggan login. */
 function performCustomerLoginRender() {
     isAdminLoggedIn = false;
     const loginBtn = document.getElementById("loginBtn");
@@ -88,9 +80,7 @@ function performCustomerLoginRender() {
     updateBookingButtonsVisibility(false);
 }
 
-/**
- * Menangani proses logout.
- */
+/** Menangani proses logout. */
 function handleLogout() {
     saveAuthStatus(false, false, null);
    
@@ -107,7 +97,6 @@ function handleLogout() {
 }
 
 // --- LOGIKA LOGIN MODAL di DOMContentLoaded ---
-
 document.addEventListener('DOMContentLoaded', function() {
     const loginModal = document.getElementById("loginModal");
     const loginForm = document.getElementById("loginForm");
