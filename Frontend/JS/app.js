@@ -1,5 +1,3 @@
-// --- FUNGSI NAVIGATION & DISPLAY ---
-
 // Variabel Konten (diambil dari serviceHandler.js, tapi didefinisikan ulang agar jelas)
 // let currentServiceForBooking; 
 // (Asumsi: serviceHandler.js dimuat sebelum app.js)

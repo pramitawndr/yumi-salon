@@ -1,4 +1,4 @@
-/* ==== Global & Fonts (Tambahan minimal) ==== */
+/* ==== Global & Fonts ==== */
 body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
@@ -56,7 +56,7 @@ h1, h2, h3, h4, h5, h6 { color: var(--dark-color); font-weight: 600; }
 }
 
 /* Penyesuaian Agar Konten Tidak Tertutup Header */
-#mainContent > main,  
+#mainContent > main,
 #hargaKontakPage > main, 
 #adminDashboardPage > main { 
     padding-top: 30px; 
@@ -71,7 +71,14 @@ h1, h2, h3, h4, h5, h6 { color: var(--dark-color); font-weight: 600; }
     border-bottom: 1px solid #eee; 
     transition: padding 0.3s ease; 
 }
-.salon-brand { font-weight: 600; font-size: 1.8rem; color: var(--pink-color) !important; letter-spacing: 2px; text-transform: capitalize; } 
+.salon-brand { 
+    font-weight: 600; 
+    font-size: 1.8rem; 
+    color: var(--pink-color) !important; 
+    letter-spacing: 2px; 
+    text-transform: capitalize; 
+} 
+
 .navbar-nav .nav-link { 
     color: var(--text-light) !important; 
     font-weight: 400; 
@@ -81,7 +88,9 @@ h1, h2, h3, h4, h5, h6 { color: var(--dark-color); font-weight: 600; }
     letter-spacing: 0.5px; 
     transition: color 0.3s ease; 
 }
-.navbar-nav .nav-link.active, .navbar-nav .nav-link:hover { color: var(--pink-color) !important; } 
+.navbar-nav .nav-link.active, .navbar-nav .nav-link:hover { 
+    color: var(--pink-color) !important; 
+} 
 
 /* Dropdown Menu Styling (Desktop) */
 .dropdown-menu { 
@@ -95,16 +104,42 @@ h1, h2, h3, h4, h5, h6 { color: var(--dark-color); font-weight: 600; }
     transform: translateY(10px);
     transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out, visibility 0s linear 0.2s; 
 }
-.dropdown-item { color: #555; font-size: 0.85rem; padding: 0.5rem 1rem; }
-.dropdown-item:hover, .dropdown-item:focus { background-color: #fdf1f4; color: var(--pink-color); }
+.dropdown-item { 
+    color: #555; 
+    font-size: 0.85rem; 
+    padding: 0.5rem 1rem; 
+}
+
+.dropdown-item:hover, .dropdown-item:focus { 
+    background-color: #fdf1f4; 
+    color: var(--pink-color); 
+}
 
 /* Dropdown on Hover (Desktop Only) */
 @media (min-width: 992px) {
     .navbar-nav .dropdown:hover > .dropdown-menu { visibility: visible; opacity: 1; transform: translateY(0); }
 }
 
+@media (max-width: 991.98px) {
+  .navbar-toggler {
+    margin-right: 0.1 px;     
+    margin-left: auto;      
+    order: 1;              
+  }
 
-/* Bagian Admin/User Logout (Tambahan Penting) */
+  .auth-section {
+    order: 2;
+    margin-left: auto;    
+  }
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+/* Bagian Admin/User Logout */
 .auth-section { 
     position: relative;
     display: flex; 
@@ -131,7 +166,6 @@ h1, h2, h3, h4, h5, h6 { color: var(--dark-color); font-weight: 600; }
     }
 }
 
-
 /* ==== Hero & Showcase ==== */
 .hero-section {
     /* PATH GAMBAR (Sesuai Struktur: ../img/ dari CSS/) */
@@ -142,20 +176,20 @@ h1, h2, h3, h4, h5, h6 { color: var(--dark-color); font-weight: 600; }
     position: relative; 
     overflow: hidden; 
     display: flex; 
-    align-items: center; /* Posisikan konten secara vertikal di tengah */
-    justify-content: center; /* Posisikan konten secara horizontal di tengah */
+    align-items: center;
+    justify-content: center;
     text-align: center;
 }
 
-/* 2. HERO OVERLAY - Lapisan Gelap */
+/* 2. HERO OVERLAY */
 .hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%; /* Menjamin menutupi seluruh .hero-section */
+    height: 100%; 
     background-color: rgba(255, 199, 211, 0.239); 
-    z-index: 2; /* Di atas background */
+    z-index: 2;
 }
 
 .hero-content {
@@ -163,7 +197,7 @@ h1, h2, h3, h4, h5, h6 { color: var(--dark-color); font-weight: 600; }
 }
 
 
-/* ==== SERVICE DETAIL HERO BANNER (Kunci Tampilan) ==== */
+/* ==== SERVICE DETAIL HERO BANNER ==== */
 .service-detail-banner {
     min-height: 250px; 
     background-size: cover;
@@ -203,7 +237,6 @@ h1, h2, h3, h4, h5, h6 { color: var(--dark-color); font-weight: 600; }
     color: white !important;
 }
 
-
 /* Showcase / Product Section */
 .showcase-container { 
     display: flex; 
@@ -213,13 +246,13 @@ h1, h2, h3, h4, h5, h6 { color: var(--dark-color); font-weight: 600; }
     -ms-overflow-style: none; 
     scrollbar-width: none; 
 }
-.showcase-container::-webkit-scrollbar { display: none; } /* Tambahan untuk menyembunyikan scrollbar di WebKit/Chrome */
+.showcase-container::-webkit-scrollbar { display: none; } 
 .showcase-item { flex-shrink: 0; width: 280px; height: 200px; overflow: hidden; border-radius: 5px; }
 .showcase-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
 .showcase-item:hover img { transform: scale(1.05); }
 
 
-/* ==== Login & Booking Modal (Kunci Fungsi) ==== */
+/* ==== Login & Booking Modal ==== */
 .modal-overlay { 
     position: fixed; 
     inset: 0; 
@@ -304,7 +337,7 @@ h1, h2, h3, h4, h5, h6 { color: var(--dark-color); font-weight: 600; }
         padding-top: 150px !important; 
     }
 
-    /* Perbaikan Navbar (agar dropdown terbuka sempurna dan ada scroll jika kontennya banyak) */
+    /* Perbaikan Navbar */
     .navbar-collapse {
         background-color: white; 
         position: absolute;
@@ -314,19 +347,18 @@ h1, h2, h3, h4, h5, h6 { color: var(--dark-color); font-weight: 600; }
         width: 100%;
         box-shadow: 0 5px 10px rgba(0,0,0,0.1);
         padding: 0 1rem;
-        max-height: calc(100vh - var(--header-height-mobile) - 10px); /* Batasi tinggi navbar */
-        overflow-y: auto; /* Aktifkan scroll vertikal jika konten terlalu panjang */
-        padding-bottom: 20px; 
+        max-height: calc(100vh - var(--header-height-mobile) - 10px); 
+        overflow-y: auto; 
+        padding-bottom: 30px; 
     }
     .navbar-nav { margin-top: 0; text-align: left;}
     .navbar-nav .nav-item { border-bottom: 1px solid #eee; }
     .navbar-nav .nav-link { padding-left: 0; padding-right: 0; }
 
     .auth-section .logged-in-user .dropdown-menu {
-        /* Tambahan: Pastikan dropdown menu tersembunyi secara default */
         display: none !important;
-        position: absolute; /* Kembali ke posisi absolute agar tidak menggeser layout */
-        top: 100%; /* Posisikan di bawah tombol */
+        position: absolute; 
+        top: 100%; 
         right: 0;
         left: auto;
         min-width: 150px;
@@ -336,13 +368,12 @@ h1, h2, h3, h4, h5, h6 { color: var(--dark-color); font-weight: 600; }
         border-radius: 5px;
     }
 
-    /* Tambahan: Tampilkan dropdown menu hanya saat Bootstrap menambahkan class 'show' */
     .auth-section .logged-in-user .dropdown-menu.show {
         display: block !important;
     }
 
     .navbar .logged-in-user {
-        position: relative; /* patokan posisi dropdown */
+        position: relative; 
     }
 
     .navbar .logged-in-user .dropdown-menu {
@@ -373,7 +404,6 @@ h1, h2, h3, h4, h5, h6 { color: var(--dark-color); font-weight: 600; }
         min-width: 140px;
     }
 }
-
     
     .dropdown-menu {
         /* PERBAIKAN DROPDOWN NAVIGASI MENU (Rambut, Wajah, Tubuh) */
@@ -382,21 +412,19 @@ h1, h2, h3, h4, h5, h6 { color: var(--dark-color); font-weight: 600; }
         visibility: visible !important;
         opacity: 1 !important;
         box-shadow: none;
-        padding-left: 1rem;
+        padding-left: 0.3 rem;
         background-color: #fdf1f4; 
     }
-    .dropdown-item { padding: 0.4rem 0.5rem; }
+    .dropdown-item { padding: 0.4 rem 0.5 rem; }
     
     .auth-section { 
         margin-top: 0; 
-        justify-content: flex-start; 
+        justify-content: center; 
         margin-bottom: 0; 
         padding-left: 0; 
     }
 
     /* PENYESUAIAN KHUSUS UNTUK AUTH SECTION MOBILE */
-    /* Karena #authSectionMobile berada di luar navbar-collapse, kita hanya perlu menargetkan 
-       dropdown-menu di dalamnya agar tidak merusak dropdown di dalam navbar-collapse */
     #authSectionMobile .logged-in-user .dropdown-menu {
         position: absolute !important;
         top: 100% !important;
@@ -406,26 +434,37 @@ h1, h2, h3, h4, h5, h6 { color: var(--dark-color); font-weight: 600; }
     }
 }
 
-/* ==== FOOTER SECTION: TEMA PINK MENGGANTIKAN BG-DARK ==== */
+/* ==== Animasi Pergantian Halaman ==== */
+.page-content {
+    position: relative; 
+    transition: opacity 0.3s ease-in-out;
+    opacity: 1; 
+    visibility: visible;
+}
+
+.page-content.fade-out {
+    opacity: 0;
+    visibility: hidden; 
+    pointer-events: none;
+}
+
+/* ==== FOOTER SECTION ==== */
 
 .site-footer {
-    /* Background pink dari variabel custom Anda */
     background-color: #444444;
-    color: white; /* Teks default putih */
+    color: white; 
 }
 
 .site-footer h6, 
 .site-footer p {
-    color: rgb(255, 155, 172); /* Paksa warna putih untuk kontras dengan pink */
+    color: rgb(255, 155, 172); 
 }
 
-/* Tautan/Links (a) di dalam footer */
 .site-footer a.text-light {
-    /* Targetkan link yang masih menggunakan class text-light Bootstrap */
-    color: rgba(255, 255, 255, 0.9) !important; /* Paksa putih, gunakan !important karena text-light */
+    color: rgba(255, 255, 255, 0.9) !important; 
 }
 .site-footer a:hover {
-    color: var(--dark-color); /* Hover ke warna gelap (kontras dengan pink) */
+    color: var(--dark-color); 
 }
 
 /* Perbaiki warna judul h5 'Yumi Salon' */

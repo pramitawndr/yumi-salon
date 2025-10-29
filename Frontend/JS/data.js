@@ -22,9 +22,8 @@ const CATEGORY_RULES = {
     } 
 };
 
-// Data Layanan (Harus tersedia secara global untuk semua file JS)
 const servicesData = [
-    // --- RAMBUT (2 JAM) ---
+    // --- RAMBUT ---
     { 
         id: 'potong-rambut', 
         category: 'RAMBUT', 
@@ -64,86 +63,8 @@ const servicesData = [
             '../img/creambath-treatment-2.jpg.jpg'
         ] 
     },
-    { 
-        id: 'anti-dandruff', 
-        category: 'RAMBUT', 
-        name: 'Anti Dandruff', 
-        shortDescription: 'Perawatan kulit kepala khusus untuk mengatasi ketombe.', 
-        description: `<p>Treatment khusus untuk membersihkan kulit kepala dari ketombe dan mengurangi rasa gatal.</p>`, 
-        price: 'Harga',
-        detailPrice: 'Rp. 80.000 - 130.000',
-        images: [ 
-            '../img/anti-dandruff.jpg.jpg',
-            '../img/anti-dandruff-2.jpg.jpg'
-        ] 
-    },
-    { 
-        id: 'hair-spa', 
-        category: 'RAMBUT', 
-        name: 'Hair Spa', 
-        shortDescription: 'Perawatan rambut kering dan kusam, menjadikannya lembut dan berkilau.', 
-        description: `<p>Memberikan nutrisi intensif untuk rambut yang rusak dan memerlukan kelembapan ekstra.</p>`, 
-        price: 'Harga',
-        detailPrice: 'Rp. 200.000',
-        images: [ 
-            '../img/hair-spa.jpg.jpg',
-            '../img/hair-spa-2.jpg.jpg' 
-        ] 
-    },
-    { 
-        id: 'hair-mask', 
-        category: 'RAMBUT', 
-        name: 'Hair Mask', 
-        shortDescription: 'Perawatan untuk memperbaiki struktur rambut yang rusak akibat proses kimia.', 
-        description: `<p>Masker rambut kaya protein untuk menguatkan helai rambut dari dalam.</p>`, 
-        price: 'Harga',
-        detailPrice: 'Rp. 150.000',
-        images: [ 
-            '../img/hair-mask.jpg.jpg',
-            '../img/hair-mask-2.jpg.jpg' 
-        ] 
-    },
 
-    // --- WAJAH (2 JAM) ---
-    { 
-        id: 'facial-acne', 
-        category: 'WAJAH', 
-        name: 'Facial Acne', 
-        shortDescription: 'Pembersihan mendalam khusus untuk kulit berjerawat dan sensitif.', 
-        description: `<p>Perawatan wajah yang fokus pada pengangkatan komedo dan pencegahan jerawat baru, menggunakan produk anti-bakteri.</p>`,
-        price: 'Harga',
-        detailPrice: 'Rp. 250.000', 
-        images: [ 
-            '../img/facial-acne.jpg.jpg',
-            '../img/facial-acne-2.jpg.jpg' 
-        ] 
-    },
-    { 
-        id: 'facial-whitening', 
-        category: 'WAJAH', 
-        name: 'Facial Whitening', 
-        shortDescription: 'Mencerahkan warna kulit dan mengurangi flek hitam.', 
-        description: `<p>Facial dengan serum pencerah yang efektif meratakan warna kulit dan memberikan kilau alami.</p>`, 
-        price: 'Harga',
-        detailPrice: 'Rp. 300.000',
-        images: [ 
-            '../img/facial-whitening.jpg.jpg',
-            '../img/facial-whitening-2.jpg.jpg'  
-        ] 
-    },
-    { 
-        id: 'facial-anti-aging', 
-        category: 'WAJAH', 
-        name: 'Facial Anti Aging', 
-        shortDescription: 'Mengurangi kerutan dan mengencangkan kulit wajah.', 
-        description: `<p>Treatment khusus untuk meminimalkan garis halus dan mengembalikan elastisitas kulit.</p>`, 
-        price: 'Harga',
-        detailPrice: 'Rp. 500.000',
-        images: [ 
-            '../img/facial-anti-aging.jpg.jpg',
-            '../img/facial-anti-aging-2.jpg.jpg' 
-        ] 
-    },
+    // --- WAJAH ---
     { 
         id: 'eyelash', 
         category: 'WAJAH', 
@@ -159,43 +80,7 @@ const servicesData = [
         ] 
     },
 
-    // --- TUBUH (1 JAM) ---
-    { 
-        id: 'body-massage', 
-        category: 'TUBUH', 
-        name: 'Body Massage', 
-        shortDescription: 'Pijatan relaksasi meredakan tegang dan memulihkan energi.', 
-        description: `<p>Pijatan relaksatif selama 60/90 menit menggunakan minyak aromaterapi pilihan untuk melepaskan ketegangan.</p>`, 
-        price: 'Harga',
-        detailPrice: 'Rp. 250.000',
-        images: [ 
-            '../img/body-massage.jpg.jpg'
-        ] 
-    },
-    { 
-        id: 'body-scrub', 
-        category: 'TUBUH', 
-        name: 'Body Scrub / Lulur', 
-        shortDescription: 'Mengangkat sel kulit mati untuk kulit yang cerah dan halus.', 
-        description: `<p>Proses eksfoliasi dengan lulur tradisional pilihan, diikuti dengan pembilasan dan pelembap.</p>`, 
-        price: 'Harga',
-        detailPrice: 'Rp. 300.000',
-        images: [ 
-            '../img/body-scrub.jpg.jpg' 
-        ] 
-    },
-    { 
-        id: 'waxing', 
-        category: 'TUBUH', 
-        name: 'Waxing', 
-        shortDescription: 'Menghilangkan bulu halus hingga ke akar dengan minim rasa sakit.', 
-        description: `<p>Layanan penghilangan bulu (waxing) cepat dan higienis untuk berbagai area tubuh.</p>`, 
-        price: 'Harga',
-        detailPrice: '<p>Rp. 200.000 - 400.000.</p>',
-        images: [  
-            '../img/waxing.jpg'
-        ] 
-    },
+    // --- TUBUH ---
     { 
         id: 'mani-pedi', 
         category: 'TUBUH', 

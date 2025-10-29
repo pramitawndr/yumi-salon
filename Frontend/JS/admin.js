@@ -1,9 +1,8 @@
 // FUNGSI UTAMA UNTUK ADMIN DASHBOARD (Bergantung pada getReservations/saveReservations dari booking.js)
 
 /** * Mendapatkan data reservasi dari localStorage.
-  * (Duplikasi dari booking.js atau seharusnya berada di file shared, tapi mari kita pisahkan dulu)
- */
-
+ * (Duplikasi dari booking.js atau seharusnya berada di file shared, tapi mari kita pisahkan dulu)
+*/
 function getReservations() {
     try {
         const data = localStorage.getItem('yumi_reservations');
@@ -17,13 +16,11 @@ function getReservations() {
 /**
  * Menyimpan data reservasi ke localStorage.
  * (Duplikasi dari booking.js atau seharusnya berada di file shared, tapi mari kita pisahkan dulu)*/
-
 function saveReservations(reservations) {
     localStorage.setItem('yumi_reservations', JSON.stringify(reservations));
 }
 
 /** * Merender daftar reservasi di tabel Admin Dashboard.*/
-
 function renderReservations(reservations, filterDate = null) {
     const tableBody = document.getElementById('reservationsTableBody');
     const totalReservationsEl = document.getElementById('totalReservations');
@@ -74,7 +71,8 @@ function renderReservations(reservations, filterDate = null) {
             <td>${res.customer}</td>
             <td><span class="${statusClass}">${res.status}</span></td>
             <td>
-                <button class="btn btn-sm btn-outline-danger btn-xs cancel-res" data-id="${res.id}" ${res.status === 'Cancelled' ? 'disabled' : ''}>Batal</button>
+                <button class="btn btn-sm btn-outline-danger btn-xs cancel-res me-2" data-id="${res.id}" ${res.status === 'Cancelled' ? 'disabled' : ''}>Batal</button>
+                <button class="btn btn-sm btn-danger btn-xs delete-res" data-id="${res.id}">Hapus</button>
             </td>
         `;
 
@@ -83,6 +81,14 @@ function renderReservations(reservations, filterDate = null) {
             const resId = parseInt(e.currentTarget.dataset.id);
             if (confirm(`Yakin ingin membatalkan reservasi oleh ${res.customer} untuk ${res.serviceName} pada ${res.date} jam ${res.time}?`)) {
                 cancelReservation(resId);
+            }
+        });
+        
+        // TAMBAHKAN: Event listener untuk tombol Hapus Permanen
+        row.querySelector('.delete-res')?.addEventListener('click', (e) => {
+            const resId = parseInt(e.currentTarget.dataset.id);
+            if (confirm(`PERINGATAN! Anda akan menghapus permanen reservasi oleh ${res.customer} untuk ${res.serviceName} pada ${res.date} jam ${res.time}. Lanjutkan?`)) {
+                deleteReservation(resId);
             }
         });
     });
@@ -100,7 +106,6 @@ function renderReservations(reservations, filterDate = null) {
 }
 
 /** * Membatalkan reservasi berdasarkan ID dan menyimpan kembali data.*/
-
 function cancelReservation(id) {
     const reservations = getReservations();
     const index = reservations.findIndex(res => res.id === id);
@@ -110,5 +115,23 @@ function cancelReservation(id) {
         const currentFilter = document.getElementById('adminDateFilter')?.value;
         renderReservations(getReservations(), currentFilter);
         alert("Reservasi berhasil dibatalkan.");
+    }
+}
+
+/** * TAMBAHKAN: Menghapus permanen reservasi berdasarkan ID dan menyimpan kembali data.
+*/
+function deleteReservation(id) {
+    let reservations = getReservations();
+    // Filter semua reservasi kecuali yang memiliki ID yang cocok
+    const initialLength = reservations.length;
+    reservations = reservations.filter(res => res.id !== id);
+
+    if (reservations.length < initialLength) {
+        saveReservations(reservations);
+        const currentFilter = document.getElementById('adminDateFilter')?.value;
+        renderReservations(getReservations(), currentFilter);
+        alert("Reservasi berhasil dihapus permanen.");
+    } else {
+        alert("Gagal menghapus reservasi. ID tidak ditemukan.");
     }
 }
